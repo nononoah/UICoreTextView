@@ -226,8 +226,7 @@ template<typename T> struct RunDelegateT : CTRunDelegateCallbacks
 				}
 				else if (xmlStrcasecmp(name,BAD_CAST"a")==0)
 				{
-					[parser->m_style.lastObject setValue:(id)[UIColor blueColor].CGColor forKey:(id)kCTForegroundColorAttributeName];
-					[parser->m_style.lastObject setValue:@(kCTUnderlineStyleSingle) forKey:(id)kCTUnderlineStyleAttributeName];
+					[parser->m_style.lastObject setValue:(id)[UIColor colorWithRed:0.70f green:0.11f blue:0.09f alpha:1.00f].CGColor forKey:(id)kCTForegroundColorAttributeName];
 				}
 				
 				if (atts)
@@ -366,7 +365,10 @@ template<typename T> struct RunDelegateT : CTRunDelegateCallbacks
 						}
 						else
 						{
-							[parser->m_style.lastObject setValue:[NSString stringWithUTF8String:(const char*)value] forKey:[NSString stringWithUTF8String:(const char*)key]];
+							if(value != nil && key != nil)
+							{
+								[parser->m_style.lastObject setValue:[NSString stringWithUTF8String:(const char*)value] forKey:[NSString stringWithUTF8String:(const char*)key]];
+							}
 						}
 					}
 				}
